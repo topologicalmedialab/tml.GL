@@ -1,0 +1,19 @@
+Here are a few utilities to help with using OpenGL in Max 5.
+
+tml.gl.maxhelp links to most (if not all) the related help files.
+The most useful object is tml.gl.expr.
+
+To work around limitations of Max 5, take note of the following:
+* Use tml.gl.float16 instead of jit.gl.texture.  This will ensure that
+  operations done with other objects happen on 16bit or 32bit textures.
+  At the moment, this is hard-coded to 32bit textures as 16bit is too
+  buggy in Max.
+* tml.gl.expr generates files with random names when no name for a shader
+  is provided.  This is since Max 5 needs a glsl and jxs file to exist
+  on disk.  I explored alternatives, but none were usable.
+* Deleting patch lines some times does not clear the texture binding on
+  the slab object.  To see how your GL application works (without any
+  residue from previous runs) quit and re-open max.
+* The generated GLSL files from tml.gl.expr and the associated jxs file
+  can be used as fragment shaders with jit.gl objects.
+
